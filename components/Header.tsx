@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/contexts/CartContext";
 import { useWishlist } from "@/contexts/WishlistContext";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -26,6 +27,7 @@ export const Header = () => {
   const pathname = usePathname();
   const cartItemCount = getTotalItems();
   const wishlistItemCount = getWishlistItems();
+  const { data: session, status } = useSession();
 
   return (
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -82,17 +84,36 @@ export const Header = () => {
 
             {/* User Menu */}
             <div className="hidden sm:flex items-center gap-2">
-              <Link href="/profile">
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
-                  <User className="w-5 h-5" />
-                </Button>
-              </Link>
-              <div className="w-px h-6 bg-border mx-1 hidden lg:block" />
-              <Link href="/login" className="hidden lg:block">
-                <Button variant="outline" size="sm" className="rounded-full">
-                  Sign In
-                </Button>
-              </Link>
+              {session ? (
+                <>
+                  <Link href="/profile">
+                    <Button variant="ghost" size="icon" className="rounded-full hover:bg-secondary">
+                      <User className="w-5 h-5" />
+                    </Button>
+                  </Link>
+                  <div className="w-px h-6 bg-border mx-1 hidden lg:block" />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                    onClick={() => signOut()}
+                  >
+                    Sign Out
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <div className="w-px h-6 bg-border mx-1 hidden lg:block" />
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full"
+                    onClick={() => signIn("github")}
+                  >
+                    Sign In
+                  </Button>
+                </>
+              )}
             </div>
 
             <Button
@@ -156,14 +177,31 @@ export const Header = () => {
                 );
               })}
               <div className="border-t border-border/50 mt-2 pt-2">
-                <Link
-                  href="/login"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl"
-                >
-                  <User className="w-4 h-4" />
-                  Sign In / Register
-                </Link>
+                {session ? (
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      signOut();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl w-full justify-start"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      signIn("github");
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl w-full justify-start"
+                  >
+                    <User className="w-4 h-4" />
+                    Sign In
+                  </Button>
+                )}
               </div>
             </nav>
           </div>

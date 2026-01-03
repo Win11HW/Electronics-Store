@@ -40,7 +40,7 @@ export const Footer = () => {
                 <span className="text-primary-foreground font-bold text-xl">T</span>
               </div>
               <div>
-                <span className="text-xl font-bold">TechVault</span>
+                <span className="text-xl font-bold">TechZone</span>
                 <span className="block text-xs text-background/60">Premium Electronics</span>
               </div>
             </Link>
@@ -113,13 +113,13 @@ export const Footer = () => {
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
-                  <span>support@techvault.com</span>
+                  <span>support@techzone.com</span>
                 </li>
                 <li className="flex items-center gap-3 text-background/70">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
-                  <span>1-800-TECHVAULT</span>
+                  <span>1-800-TECHZONE</span>
                 </li>
                 <li className="flex items-start gap-3 text-background/70">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
@@ -151,7 +151,7 @@ export const Footer = () => {
 
         <div className="border-t border-background/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-background/70">
-            © 2024 TechVault. All rights reserved.
+            © 2024 TechZone. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-background/70">
             <a href="#" className="hover:text-primary transition-colors">

@@ -4,8 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { CartProvider } from "@/contexts/CartContext";
-import { WishlistProvider } from "@/contexts/WishlistContext";
+import { Providers } from "@/components/Providers";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -25,15 +24,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} font-sans antialiased`}>
-          <CartProvider>
-            <WishlistProvider>
-              <div className="min-h-screen bg-background flex flex-col">
-                <Header />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-            </WishlistProvider>
-          </CartProvider>
+        <Providers>
+          <div className="min-h-screen bg-background flex flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </Providers>
       </body>
     </html>
   );
