@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-import { Github, Chrome, ArrowLeft, Loader } from "lucide-react";
+import { Github, ArrowLeft, Loader } from "lucide-react";
+import { FaGoogle } from "react-icons/fa6";
 
 export default function LoginPage() {
   const [loading, setLoading] = useState<string | null>(null);
@@ -81,7 +82,7 @@ export default function LoginPage() {
                 </>
               ) : (
                 <>
-                  <Chrome className="w-5 h-5 text-[#4285F4]" />
+                  <FaGoogle className="w-5 h-5 text-[#4285F4]" />
                   <span>Continue with Google</span>
                 </>
               )}
