@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
-import { Github } from "lucide-react";
+import { Github, Chrome } from "lucide-react";
 
 export default function LoginPage() {
   return (
@@ -12,15 +12,25 @@ export default function LoginPage() {
         <div className="bg-card rounded-2xl shadow-lg border border-border/50 p-8">
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
-            <p className="text-muted-foreground">Sign in with your GitHub account</p>
+            <p className="text-muted-foreground">Sign in with your account</p>
           </div>
-          <Button
-            onClick={() => signIn("github")}
-            className="w-full rounded-lg flex items-center gap-2"
-          >
-            <Github className="w-5 h-5" />
-            Sign in with GitHub
-          </Button>
+          <div className="space-y-4">
+            <Button
+              onClick={() => signIn("github")}
+              className="w-full rounded-lg flex items-center gap-2"
+            >
+              <Github className="w-5 h-5" />
+              Sign in with GitHub
+            </Button>
+            <Button
+              onClick={() => signIn("google")}
+              variant="outline"
+              className="w-full rounded-lg flex items-center gap-2"
+            >
+              <Chrome className="w-5 h-5" />
+              Sign in with Google
+            </Button>
+          </div>
           <div className="text-center mt-8">
             <Link href="/">
               <Button variant="outline" className="w-full rounded-lg">Back to Home</Button>
