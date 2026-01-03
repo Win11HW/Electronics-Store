@@ -104,14 +104,11 @@ export const Header = () => {
               ) : (
                 <>
                   <div className="w-px h-6 bg-border mx-1 hidden lg:block" />
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="rounded-full"
-                    onClick={() => signIn("github")}
-                  >
-                    Sign In
-                  </Button>
+                  <Link href="/login">
+                    <Button variant="outline" size="sm" className="rounded-full">
+                      Sign In
+                    </Button>
+                  </Link>
                 </>
               )}
             </div>
@@ -190,17 +187,16 @@ export const Header = () => {
                     Sign Out
                   </Button>
                 ) : (
+                  <Link href="/login" onClick={() => setIsMenuOpen(false)}>
                   <Button
                     variant="ghost"
-                    onClick={() => {
-                      signIn("github");
-                      setIsMenuOpen(false);
-                    }}
                     className="flex items-center gap-2 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl w-full justify-start"
                   >
                     <User className="w-4 h-4" />
                     Sign In
                   </Button>
+                </Link>
+
                 )}
               </div>
             </nav>
